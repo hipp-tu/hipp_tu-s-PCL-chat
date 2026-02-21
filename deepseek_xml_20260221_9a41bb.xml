@@ -1,0 +1,34 @@
+<local:ScrollingHelpPage xmlns:local="clr-namespace:PCL2;assembly=PCL2">
+    <StackPanel>
+        <!-- 聊天记录卡片 -->
+        <local:MyCard IsExpanded="True">
+            <local:MyCard.Header>
+                <TextBlock Text="聊天记录"/>
+            </local:MyCard.Header>
+            <StackPanel Margin="12">
+                <TextBlock x:Name="ChatDisplay" 
+                          Text="{x:Static local:File.ReadAllText('C:\Users\你的用户名\PCL_Chat\chat_log.txt')}"
+                          TextWrapping="Wrap"
+                          FontFamily="Consolas"
+                          LineHeight="20"/>
+            </StackPanel>
+        </local:MyCard>
+
+        <!-- 发消息卡片 -->
+        <local:MyCard IsExpanded="True">
+            <local:MyCard.Header>
+                <TextBlock Text="发消息"/>
+            </local:MyCard.Header>
+            <StackPanel Margin="12" Orientation="Horizontal">
+                <local:MyTextBox x:Name="MsgInput" 
+                                Width="200"
+                                Margin="0,0,8,0"
+                                HintText=""/>
+                <local:MyButton Content="发送" 
+                               Width="60"
+                               local:CustomEventService.EventType="执行命令"
+                               local:CustomEventService.EventData="C:\Users\你的用户名\PCL_Chat\send.bat {MsgInput.Text}"/>
+            </StackPanel>
+        </local:MyCard>
+    </StackPanel>
+</local:ScrollingHelpPage>
